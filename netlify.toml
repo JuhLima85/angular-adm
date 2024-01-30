@@ -1,8 +1,8 @@
 # netlify.toml
 [build]  
-  publish = "/dist/clientes-app"
-  command = "npm install --force && ng build --prod"
-
+  [build]
+  command = "npm install --force && ng build --configuration production"
+  publish = "dist/clientes-app"
 
 # Configuração das regras de redirecionamento
 [[redirects]]
