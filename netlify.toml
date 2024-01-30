@@ -1,6 +1,5 @@
 # netlify.toml
 [build]  
-  [build]
   command = "npm install --force && ng build --configuration production"
   publish = "dist/clientes-app"
 
