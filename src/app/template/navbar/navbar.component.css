@@ -1,13 +1,42 @@
-.sb-topnav {
-    background-color:#FFC0CB;
-}
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
+.sb-topnav {    
+    background-color:#6caafc;
 }
 
 .navbar-brand span {
     color: #2f86e2;
 }
+
+/* garante que a navbar tenha pouco padding (mais “colada” à margem) */
+.sb-topnav.navbar {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;   /* ajusta distância da borda esquerda */
+    padding-right: .5rem;
+  }
+  
+  /* deixa a logo no tamanho desejado e centralizada com o texto */
+  .navbar-brand .brand-logo {
+    height: 70px !important;   /* ajuste o valor à vontade */
+    width: auto !important;
+    display: block;            /* evita desalinhamento por baseline */
+  }
+  
+  /* texto ao lado da logo, alinhado verticalmente */
+  .navbar-brand .brand-text {
+    font-size: 1.70rem;   /* ~28px */
+    line-height: 1;            /* não “empurra” pra baixo */
+    color: #fff;               /* garante branco na brand */
+  }
+  
+  /* botão “sanduíche” mais compacto e alinhado ao centro da linha */
+  #sidebarToggle.btn-link {
+    padding: 0;                /* remove padding extra do botão */
+    line-height: 1;
+  }
+  #sidebarToggle i {
+    font-size: 1.1rem;         /* ajuste opcional do tamanho do ícone */
+    color: #fff;
+  }
+  
+  
+

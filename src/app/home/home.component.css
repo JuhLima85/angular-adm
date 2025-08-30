@@ -3,6 +3,29 @@ h1.mt-4 {
 }
 
 .breadcrumb {
-    background-color: #ffc0cb80;
+    background-color: #b2d0f7;
     color:rgb(59, 59, 59);
 }
+
+/* Estilos para a marca d'água */
+#layoutSidenav_content main { /* Ou apenas 'main' se for o único main na página */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+#layoutSidenav_content main::before { /* Ou apenas 'main::before' */
+    content: "";
+    background-image: url('../../assets/img/sibre.jpg'); /* Caminho da sua imagem */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.08; /* Ajuste a opacidade. Um valor um pouco menor (0.08) pode ser mais discreto */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
