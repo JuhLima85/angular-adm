@@ -7,4 +7,15 @@
     background-color: #0bb3d4; 
     color: #fff; 
   }
+
+  /* linha rosa clara quando não for membro */
+tbody tr.nao-membro {
+  background-color: rgba(255, 192, 203, 0.25); /* #ffc0cb com transparência */
+}
+
+/* destaca um pouco mais no hover */
+.table-hover tbody tr.nao-membro:hover {
+  background-color: rgba(255, 192, 203, 0.45);
+}
+
   

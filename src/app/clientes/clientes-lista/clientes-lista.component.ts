@@ -3,6 +3,8 @@ import { Cliente} from '../cliente';
 import { ClientesService } from '../../services/clientes.service';
 import { Router } from '@angular/router';
 import { ClienteServicoDtoService } from 'src/app/services/cliente-servico-dto.service';
+import { Pessoa } from './../Pessoa';
+import { PessoaDto } from '../PessoaDto';
 
 @Component({
   selector: 'app-clientes-lista',
@@ -12,6 +14,7 @@ import { ClienteServicoDtoService } from 'src/app/services/cliente-servico-dto.s
 export class ClientesListaComponent implements OnInit {
 
   clientes: Cliente[] = [];
+  pessoas: PessoaDto[] = [];
   clienteSelecionado: Cliente;
   mesagemSucesso: string;
   mesagemErro: string;
@@ -22,10 +25,19 @@ export class ClientesListaComponent implements OnInit {
     private router: Router,
     ) { }
 
-  ngOnInit(): void {
+  /*ngOnInit(): void {
     this.service
-    .buscarClientes()
-    .subscribe( resposta => this.clientes = resposta);
+    .buscarPessoas()
+    .subscribe( resposta => this.pessoas = resposta);
+  }*/
+  ngOnInit(): void {
+    this.service.buscarPessoas().subscribe({
+      next: (resposta) => {
+        console.log('buscarPessoas() -> resposta:', resposta);
+        this.pessoas = resposta;
+      },
+      error: (err) => console.error('Erro ao buscar pessoas:', err)
+    });
   }
 
   novoCadastro(){

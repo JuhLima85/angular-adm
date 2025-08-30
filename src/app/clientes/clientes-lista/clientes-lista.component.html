@@ -1,6 +1,6 @@
-<h1 class="mt-4" style="color:#2f86e2">Clientes</h1>
+<h1 class="mt-4" style="color:#2f86e2">Membros</h1>
 <ol class="breadcrumb mb-4" style="background-color:#ffc0cb80">
-    <li class="breadcrumb-item active">Novo</li>
+    <li class="breadcrumb-item active">Novo Cadastro</li>
 </ol>
 <div class="container">
     <div class="row">
@@ -25,29 +25,29 @@
     <div class="col-md-12">
         <table class="table table-condensed table-hover">
             <thead>
-                <tr>
-                    <th>ID</th>
+                <tr>                                     
                     <th>Nome</th>
-                    <th>CPF</th>
-                    <th>Data Cadastro</th>
+                    <th>Telefone</th>
+                    <th>E-mail</th>
+                    <th>Data Nacimento</th>                                       
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let cliente of clientes">
-                    <td>{{ cliente.id }}</td>
-                    <td>{{ cliente.nome }}</td>
-                    <td>{{ cliente.cpf }}</td>
-                    <td>{{ cliente.dataCadastro }}</td>
+                <tr *ngFor="let pessoa of pessoas"  [ngClass]="{ 'nao-membro': !pessoa.pessoaMembro }">                   
+                    <td>{{ pessoa.pessoaNome }}</td>
+                    <td>{{ pessoa.pessoaFone }}</td>
+                    <td>{{ pessoa.pessoaEmail }}</td>
+                    <td>{{ pessoa.pessoaData }}</td>                                                      
                     <td>
-                        <button class="btn btn-primary" routerLink="/clientes/form/{{ cliente.id }}" title="Editar">
+                        <button class="btn btn-primary" routerLink="/clientes/form/{{ pessoa.idPessoa}}" title="Editar">
                             <i class="fa fa-edit"></i>
                         </button>
-                        <button class="btn btn-danger ml-2"  (click)="exibirClienteModalDelet(cliente)"
+                        <button class="btn btn-danger ml-2"  (click)="exibirClienteModalDelet(pessoa)"
                                 data-toggle="modal" data-target="#modalDelecao" title="Excluir">
                             <i class="fa fa-trash"></i>
                         </button>                       
-                        <button class="btn btn-custom-blue ml-2" (click)="exibirHistorico(cliente)" title="Histórico Financeiro">
+                        <button class="btn btn-custom-blue ml-2" (click)="exibirHistorico(pessoa)" title="Histórico">
                             <i class="fa fa-file-alt"></i>                            
                         </button>
                     </td>                    

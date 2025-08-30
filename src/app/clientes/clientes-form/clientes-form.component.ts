@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente'
 import { ClientesService} from '../../services/clientes.service'
 import { Router, ActivatedRoute} from '@angular/router';
+import { Pessoa } from './../Pessoa';
 
 @Component({
   selector: 'app-clientes-form',
@@ -12,6 +13,7 @@ import { Router, ActivatedRoute} from '@angular/router';
 export class ClientesFormComponent implements OnInit {
   
   cliente: Cliente;
+  pessoa: Pessoa;
   sucesso: boolean = false;
   erros: String[];
   id: number;  
@@ -21,6 +23,7 @@ export class ClientesFormComponent implements OnInit {
     private router : Router,
     private activatedRoute : ActivatedRoute) { 
     this.cliente = new Cliente();
+    this.pessoa = new Pessoa();
   }
 
   ngOnInit(): void {
@@ -42,7 +45,7 @@ export class ClientesFormComponent implements OnInit {
     this.router.navigate(['/clientes/lista'])
   }
   
-    onSubmit(){         
+    /*onSubmit(){         
       if(this.id){
         this.service
           .atualizar(this.cliente)
@@ -64,7 +67,30 @@ export class ClientesFormComponent implements OnInit {
            this.sucesso = false; 
         })
       }    
-      }
+      }*/
+      onSubmit(){         
+        if(this.id){
+          this.service
+            .atualizar(this.cliente)
+            .subscribe(response => {
+              this.sucesso = true;
+              this.erros = null;
+            }, erroResponse => {          
+              this.erros = ['Erro ao atualizar o cliente.']})
+    
+        }else{
+          this.service
+          .salvar(this.pessoa)
+          .subscribe( response => {
+            this.sucesso = true;
+            this.erros = null;
+            this.cliente = response;
+          }, errorResponse => {                           
+            this.erros = errorResponse.error.errors;  
+             this.sucesso = false; 
+          })
+        }    
+        }
 
       formatarCPF() {
         if (this.cliente.cpf) {           

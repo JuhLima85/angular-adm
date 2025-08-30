@@ -1,8 +1,10 @@
 import { ClientesService } from '../../services/clientes.service';
 import { Cliente } from './../../clientes/cliente';
+import { Pessoa } from './../../clientes/Pessoa';
 import { Component, OnInit } from '@angular/core';
 import { ServicoPrestado } from '../servicoPrestado';
 import { ServicoPrestadoService } from '../../services/servico-prestado.service';
+import { PessoaDto } from 'src/app/clientes/PessoaDto';
 
 @Component({
   selector: 'app-servico-prestado-form',
@@ -12,6 +14,7 @@ import { ServicoPrestadoService } from '../../services/servico-prestado.service'
 export class ServicoPrestadoFormComponent implements OnInit {
 
   clientes: Cliente[] = []
+  pessoas: PessoaDto[] = []
   servico: ServicoPrestado
   sucesso: boolean = false
   erros: String[]
@@ -25,8 +28,8 @@ export class ServicoPrestadoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.clienteService
-    .buscarClientes()
-    .subscribe( resposta => this.clientes = resposta);
+    .buscarPessoas()
+    .subscribe( resposta => this.pessoas = resposta);
   }
 
   onSubmit() {
