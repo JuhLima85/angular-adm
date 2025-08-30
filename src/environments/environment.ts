@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //apiUrlBase: 'http://localhost:8080'
-  apiUrlBase: 'https://maridodealuguel.codedeving.com.br'
+  apiUrlBase: 'http://localhost:8080'
+  //apiUrlBase: 'https://maridodealuguel.codedeving.com.br'
   
 };
 
