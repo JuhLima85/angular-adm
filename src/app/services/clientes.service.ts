@@ -21,9 +21,6 @@ export class ClientesService {
 
   constructor( private http: HttpClient) {  }  
   
-  /*salvar(cliente: Cliente): Observable<Cliente> {    
-    return this.http.post<Cliente>(`${this.apiUrl}`, cliente);
-  }*/
   salvar(pessoa: Pessoa): Observable<Cliente> {    
     return this.http.post<Cliente>(`${this.apiUrl}`, pessoa);
   }
@@ -32,9 +29,6 @@ export class ClientesService {
     return this.http.put<Cliente>(`${this.apiUrl}/${cliente.id}`, cliente);
   }
   
-  /*buscarClientes() : Observable<Cliente[]> {   
-    return this.http.get<Cliente[]>(this.apiUrl);
-  }*/
   buscarPessoas() : Observable<PessoaDto[]> {   
     return this.http.get<PessoaDto[]>(this.apiUrl);
   }
@@ -46,10 +40,6 @@ export class ClientesService {
   deletar(cliente: Cliente) : Observable<any> {
     return this.http.delete<Cliente>(`${this.apiUrl}/${cliente.id}`);
   }
-
-  /*listarClientesEServicos(cliente: any): Observable<ClienteServicoDto[]> {
-    return this.http.get<ClienteServicoDto[]>(`${this.apiUrlServico}/${cliente.id}`);
-  }*/ 
   
 }
  

@@ -62,10 +62,12 @@ carregarHistorico(id: number): void {
           pessoa: historico.cadastro,         
           relacionamentos: historico.relacionamentos
         }
-      });
+      });      
+      this.mesagemErro = null; 
     },
     error: () => {
-      // opcional: redirecionar para erro, mostrar mensagem etc.
+      this.mesagemErro = 'Ocorreu um erro ao carregar o histórico.';
+      this.mesagemSucesso = null; 
     }
   });
 }

@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Cliente } from "../clientes/cliente"
-import {ClienteServicoDto} from "../shared/cliente-servico-dto/cliente-servico-dto"
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient} from '@angular/common/http';
 import { Usuario } from '../login/usuario';
-import { Pessoa } from '../model/Pessoa';
-import { PessoaDto } from '../model/PessoaDto';
 import { HistoricoDto } from '../model/HistoricoDto';
 
 @Injectable({

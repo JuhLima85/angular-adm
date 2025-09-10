@@ -1,10 +1,9 @@
-// pessoa.dto.ts
 export interface PessoaDto {
     idPessoa: number;
     pessoaNome: string;
     pessoaFone: string;
     pessoaEmail: string;
-    pessoaData?: string; // "YYYY-MM-DD"
+    pessoaData?: string;
     pessoaCep?: string;
     pessoaLogradouro?: string;
     pessoaBairro?: string;
