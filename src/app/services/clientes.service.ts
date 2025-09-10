@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient} from '@angular/common/http';
 import { Usuario } from '../login/usuario';
-import { Pessoa } from '../clientes/Pessoa';
-import { PessoaDto } from '../clientes/PessoaDto';
+import { Pessoa } from '../model/Pessoa';
+import { PessoaDto } from '../model/PessoaDto';
+import { HistoricoDto } from '../model/HistoricoDto';
 
 @Injectable({
   providedIn: 'root'
@@ -46,8 +47,9 @@ export class ClientesService {
     return this.http.delete<Cliente>(`${this.apiUrl}/${cliente.id}`);
   }
 
-  listarClientesEServicos(cliente: any): Observable<ClienteServicoDto[]> {
+  /*listarClientesEServicos(cliente: any): Observable<ClienteServicoDto[]> {
     return this.http.get<ClienteServicoDto[]>(`${this.apiUrlServico}/${cliente.id}`);
-  }  
+  }*/ 
+  
 }
  

@@ -3,8 +3,8 @@ import { Cliente} from '../cliente';
 import { ClientesService } from '../../services/clientes.service';
 import { Router } from '@angular/router';
 import { ClienteServicoDtoService } from 'src/app/services/cliente-servico-dto.service';
-import { Pessoa } from './../Pessoa';
-import { PessoaDto } from '../PessoaDto';
+import { PessoaDto } from '../../model/PessoaDto';
+import { HistoricosService } from 'src/app/services/historicos.service';
 
 @Component({
   selector: 'app-clientes-lista',
@@ -22,18 +22,13 @@ export class ClientesListaComponent implements OnInit {
   constructor(
     private service: ClientesService,
     private clienteServicoDtoService: ClienteServicoDtoService,
+    private historicoService: HistoricosService,
     private router: Router,
     ) { }
 
-  /*ngOnInit(): void {
-    this.service
-    .buscarPessoas()
-    .subscribe( resposta => this.pessoas = resposta);
-  }*/
   ngOnInit(): void {
     this.service.buscarPessoas().subscribe({
-      next: (resposta) => {
-        console.log('buscarPessoas() -> resposta:', resposta);
+      next: (resposta) => {        
         this.pessoas = resposta;
       },
       error: (err) => console.error('Erro ao buscar pessoas:', err)
@@ -57,19 +52,21 @@ export class ClientesListaComponent implements OnInit {
         this.ngOnInit();
                   },
       erro => this.mesagemErro = 'Ocorreu um erro ao deletar o cliente.')
-  }
-  
-  exibirHistorico(cliente: Cliente) {
-    this.service.listarClientesEServicos(cliente)
-        .subscribe((historicoDeServicos) => {              
-            this.clienteServicoDtoService.setHistorico(historicoDeServicos);             
-      this.router.navigate(['/cliente-servico-dto/historico']); 
-    }, erro => {
-      if (erro.status === 403) {      
-        this.mesagemErro = 'Apenas perfil ADIM tem permissão para acessar o histórico financeiro. ';
-      } else {       
-        this.mesagemErro = 'Ocorreu um erro ao carregar o histórico do cliente.';
-      }
-    });
+  }  
+
+carregarHistorico(id: number): void { 
+  this.historicoService.listarPessasERelacionamentos(id).subscribe({
+    next: (historico) => {      
+      this.router.navigate(['/historicos/visualizar-historico'], {
+        state: {
+          pessoa: historico.cadastro,         
+          relacionamentos: historico.relacionamentos
+        }
+      });
+    },
+    error: () => {
+      // opcional: redirecionar para erro, mostrar mensagem etc.
+    }
+  });
 }
 }

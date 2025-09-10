@@ -9,7 +9,7 @@ import { ClientesListaComponent } from './clientes-lista/clientes-lista.componen
 @NgModule({
   declarations: [
     ClientesFormComponent,
-    ClientesListaComponent
+    ClientesListaComponent    
   ],
   imports: [
     CommonModule,

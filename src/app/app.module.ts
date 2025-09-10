@@ -19,17 +19,21 @@ import { LayoutComponent } from './layout/layout.component';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './token.interceptor';
 import { CredenciaisRoutingModule } from './login/update-credenciais/credenciais-routing.module'
-import { CredenciaisModule } from './login/update-credenciais/credenciais.module'
+import { CredenciaisModule } from './login/update-credenciais/credenciais.module';
+import { HistoricosRoutingModule  } from './historicos/historicos-routing.module';
+import { HistoricosService } from 'src/app/services/historicos.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    LayoutComponent, 
+    LayoutComponent,
+     
     
   ],
-  imports: [
+  imports: [  
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -39,13 +43,15 @@ import { CredenciaisModule } from './login/update-credenciais/credenciais.module
     ServicoPrestadoModule,
     ClienteServicoDtoModule,
     CredenciaisRoutingModule,
-    CredenciaisModule,       
+    CredenciaisModule,
+    HistoricosRoutingModule,       
   ],
   providers: [    
     ClientesService,
     ServicoPrestadoService,
     ClienteServicoDtoService,
-    AuthService,  
+    AuthService,
+    HistoricosService,  
     {     
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

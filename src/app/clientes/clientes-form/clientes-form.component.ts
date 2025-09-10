@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../cliente'
 import { ClientesService} from '../../services/clientes.service'
 import { Router, ActivatedRoute} from '@angular/router';
-import { Pessoa } from './../Pessoa';
+import { Pessoa } from '../../model/Pessoa';
 
 @Component({
   selector: 'app-clientes-form',
