@@ -4,6 +4,17 @@
       <li class="breadcrumb-item active">Gerenciar Cadastro</li>
     </ol>  
 
+    <div class="row">
+      <div class="col-md-12">
+          <div class="alert alert-success" role="aler" *ngIf="mensagemSucesso">
+              {{ mensagemSucesso }}
+          </div>
+          <div class="alert alert-danger" role="aler" *ngIf="mensagemErro">
+              {{  mensagemErro }}
+          </div>
+      </div>
+  </div>
+
     <!-- Dados da Pessoa -->   
     <div>
         <strong >Nome: </strong> <span>{{ pessoa?.nome }}</span>
@@ -33,7 +44,7 @@
   <select class="form-control w-auto" [(ngModel)]="idFamiliar">
     <option [ngValue]="undefined" disabled selected>Selecione o familiar</option>
     <option *ngFor="let p of pessoasDisponiveis" [ngValue]="p.id">
-      {{ p.nome }} (ID: {{ p.id }})
+      {{ p.nome }}
     </option>
   </select>
   

@@ -3,7 +3,6 @@ import { Cliente} from '../cliente';
 import { ClientesService } from '../../services/clientes.service';
 import { Router } from '@angular/router';
 import { ClienteServicoDtoService } from 'src/app/services/cliente-servico-dto.service';
-import { PessoaDto } from '../../model/PessoaDto';
 import { HistoricosService } from 'src/app/services/historicos.service';
 import { Pessoa } from 'src/app/model/Pessoa';
 
@@ -17,8 +16,8 @@ export class ClientesListaComponent implements OnInit {
   clientes: Cliente[] = [];
   pessoas: Pessoa[] = [];
   clienteSelecionado: Cliente;
-  mesagemSucesso: string;
-  mesagemErro: string;
+  mensagemSucesso: string;
+  mensagemErro: string;
   
   constructor(
     private service: ClientesService,
@@ -50,29 +49,11 @@ export class ClientesListaComponent implements OnInit {
     .deletar(this.clienteSelecionado)
     .subscribe(
       response => {
-        this.mesagemSucesso = 'Cliente deletado com sucesso!'
+        this.mensagemSucesso = 'Cliente deletado com sucesso!'
         this.ngOnInit();
                   },
-      erro => this.mesagemErro = 'Ocorreu um erro ao deletar o cliente.')
+      erro => this.mensagemErro = 'Ocorreu um erro ao deletar o cliente.')
   }  
-
-/*carregarHistorico(id: number): void { 
-  this.historicoService.listarPessasERelacionamentos(id).subscribe({
-    next: (historico) => {      
-      this.router.navigate(['/historicos/visualizar-historico'], {
-        state: {
-          pessoa: historico.cadastro,         
-          relacionamentos: historico.relacionamentos
-        }
-      });      
-      this.mesagemErro = null; 
-    },
-    error: () => {
-      this.mesagemErro = 'Ocorreu um erro ao carregar o histórico.';
-      this.mesagemSucesso = null; 
-    }
-  });
-}*/
 
 carregarHistorico(id: number): void { 
   this.service.buscarPessoaPorId(id).subscribe({
@@ -82,11 +63,11 @@ carregarHistorico(id: number): void {
           pessoa: pessoa               
         }
       });      
-      this.mesagemErro = null; 
+      this.mensagemErro = null; 
     },
     error: () => {
-      this.mesagemErro = 'Ocorreu um erro ao carregar o histórico.';
-      this.mesagemSucesso = null; 
+      this.mensagemErro = 'Ocorreu um erro ao carregar o histórico.';
+      this.mensagemSucesso = null; 
     }
   });
 }
