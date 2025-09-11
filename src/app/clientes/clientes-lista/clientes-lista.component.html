@@ -34,20 +34,20 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let pessoa of pessoas"  [ngClass]="{ 'nao-membro': !pessoa.pessoaMembro }">                   
-                    <td>{{ pessoa.pessoaNome }}</td>
-                    <td>{{ pessoa.pessoaFone }}</td>
-                    <td>{{ pessoa.pessoaEmail }}</td>
-                    <td>{{ pessoa.pessoaData }}</td>                                                      
+                <tr *ngFor="let pessoa of pessoas"  [ngClass]="{ 'nao-membro': !pessoa.membro }">                   
+                    <td>{{ pessoa.nome }}</td>
+                    <td>{{ pessoa.fone }}</td>
+                    <td>{{ pessoa.email }}</td>
+                    <td>{{ pessoa.data }}</td>                                                      
                     <td>
-                        <button class="btn btn-primary" routerLink="/clientes/form/{{ pessoa.idPessoa}}" title="Editar">
+                        <button class="btn btn-primary" [routerLink]="['/clientes/form', pessoa.id]" title="Editar">
                             <i class="fa fa-edit"></i>
-                        </button>
+                        </button>                                                 
                         <button class="btn btn-danger ml-2"  (click)="exibirClienteModalDelet(pessoa)"
                                 data-toggle="modal" data-target="#modalDelecao" title="Excluir">
                             <i class="fa fa-trash"></i>
                         </button>                       
-                        <button class="btn btn-custom-blue ml-2" (click)="carregarHistorico(pessoa.idPessoa)" title="Histórico">
+                        <button class="btn btn-custom-blue ml-2" (click)="carregarHistorico(pessoa.id)" title="Histórico">
                             <i class="fa fa-file-alt"></i>                            
                         </button>
                     </td>                    

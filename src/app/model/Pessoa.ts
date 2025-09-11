@@ -1,5 +1,7 @@
+import { Parentesco } from "./Parentescos";
+
 export class Pessoa {
-    id_c?: number;
+    id?: number;
     nome: string = '';
     fone: string = '';
     email: string = '';
@@ -11,8 +13,7 @@ export class Pessoa {
     uf: string = '';
     membro: boolean;
   
-    //relacionamentosPessoa1: Relacionamento[] = [];
-    //relacionamentosPessoa2: Relacionamento[] = [];
+    parentescos: Parentesco[] = []; 
   
     constructor(init?: Partial<Pessoa>) {
       Object.assign(this, init);

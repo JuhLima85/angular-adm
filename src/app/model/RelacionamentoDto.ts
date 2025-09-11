@@ -1,7 +1,5 @@
 export interface RelacionamentoDto {
-  idRelacionamento: number;
-  idPessoa1: number;
-  idPessoa2: number;
+  id: number;
   nomeFamiliar: string;
-  grauParentesco: string;
+  tipo: string;
 }

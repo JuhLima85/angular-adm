@@ -10,9 +10,8 @@ import { HistoricoComponent } from './historico/historico.component';
     HistoricoComponent
   ],
   imports: [  
-  HistoricosRoutingModule,
-  FormsModule,
-  CommonModule,
+  CommonModule, 
+  FormsModule,  
   HistoricosRoutingModule
   ], exports: [
     HistoricoComponent

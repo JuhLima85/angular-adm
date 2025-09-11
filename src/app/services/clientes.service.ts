@@ -16,26 +16,31 @@ import { HistoricoDto } from '../model/HistoricoDto';
 export class ClientesService {
   
   usuario: Usuario;  
-  apiUrl: string = environment.apiUrlBase + '/formulario'
+  apiUrl: string = environment.apiUrlBase + '/pessoas'
   apiUrlServico: string = environment.apiUrlBase + '/api/servicos-prestados'  
 
   constructor( private http: HttpClient) {  }  
   
-  salvar(pessoa: Pessoa): Observable<Cliente> {    
+  salvar(pessoa: Pessoa): Observable<Cliente> {   
+    console.log('Entrou no service'); 
     return this.http.post<Cliente>(`${this.apiUrl}`, pessoa);
   }
   
-  atualizar(cliente: Cliente) : Observable<any> {
-    return this.http.put<Cliente>(`${this.apiUrl}/${cliente.id}`, cliente);
-  }
+  atualizar(cliente: Pessoa): Observable<Pessoa> {
+    return this.http.put<Pessoa>(`${this.apiUrl}/${cliente.id}`, cliente);
+  }  
   
-  buscarPessoas() : Observable<PessoaDto[]> {   
+  /*buscarPessoas() : Observable<PessoaDto[]> {   
     return this.http.get<PessoaDto[]>(this.apiUrl);
+  }*/
+
+  buscarPessoas() : Observable<Pessoa[]> {   
+    return this.http.get<Pessoa[]>(this.apiUrl);
   }
  
-  buscarClientePorId(id: number) : Observable<Cliente> {
+  buscarPessoaPorId(id: number) : Observable<Pessoa> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
-  } 
+  }  
 
   deletar(cliente: Cliente) : Observable<any> {
     return this.http.delete<Cliente>(`${this.apiUrl}/${cliente.id}`);

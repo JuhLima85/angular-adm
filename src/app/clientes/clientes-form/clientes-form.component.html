@@ -1,6 +1,6 @@
 <h1 class="mt-4" style="color:#2f86e2">Membro</h1>
 <ol class="breadcrumb mb-4" style="background-color:#b2d0f7">
-    <li class="breadcrumb-item active">{{ pessoa.id_c ? 'Edição' : 'Cadastro' }}</li>
+    <li class="breadcrumb-item active">{{ pessoa.id ? 'Edição' : 'Cadastro' }}</li>
 </ol>
 <div class="container">
     <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">        
@@ -13,21 +13,7 @@
                     {{ erro }}
                 </div>
             </div>
-        </div>       
-        <div class="row" *ngIf="pessoa.id_c">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>ID:</label>
-                    <input type="text" class="form-control" disabled="true" [ngModel]="pessoa.id_c" name="id"/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Nome:</label>
-                    <input type="text" class="form-control" disabled="true" [ngModel]="pessoa.nome" name="nome"/>
-                </div>
-            </div>
-        </div> 
+        </div>     
 
         <div class="row">
             <div class="col-md-6">
@@ -80,10 +66,10 @@
             </div>             
         </div>
         <div class="row-buttons">
-                <button type="submit" class="btn btn-success" *ngIf="!pessoa.id_c">
+                <button type="submit" class="btn btn-success" *ngIf="!pessoa.id">
                     <i class="fa fa-save" ></i> Salvar
                 </button>
-                <button type="submit" class="btn btn-primary" *ngIf="pessoa.id_c">
+                <button type="submit" class="btn btn-primary" *ngIf="pessoa.id">
                     <i class="fa fa-sync-alt" ></i> Atualizar
                 </button>                
                 <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">

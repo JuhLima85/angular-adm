@@ -20,8 +20,8 @@ import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './token.interceptor';
 import { CredenciaisRoutingModule } from './login/update-credenciais/credenciais-routing.module'
 import { CredenciaisModule } from './login/update-credenciais/credenciais.module';
-import { HistoricosRoutingModule  } from './historicos/historicos-routing.module';
 import { HistoricosService } from 'src/app/services/historicos.service';
+import { HistoricosModule } from './historicos/historicos.module';
 
 
 @NgModule({
@@ -29,9 +29,7 @@ import { HistoricosService } from 'src/app/services/historicos.service';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    LayoutComponent,
-     
-    
+    LayoutComponent,    
   ],
   imports: [  
     BrowserModule,
@@ -44,7 +42,7 @@ import { HistoricosService } from 'src/app/services/historicos.service';
     ClienteServicoDtoModule,
     CredenciaisRoutingModule,
     CredenciaisModule,
-    HistoricosRoutingModule,       
+    HistoricosModule,       
   ],
   providers: [    
     ClientesService,

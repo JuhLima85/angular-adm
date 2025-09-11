@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicoPrestado } from '../servicoPrestado';
 import { ServicoPrestadoService } from '../../services/servico-prestado.service';
 import { PessoaDto } from 'src/app/model/PessoaDto';
+import { Pessoa } from 'src/app/model/Pessoa';
 
 @Component({
   selector: 'app-servico-prestado-form',
@@ -13,7 +14,7 @@ import { PessoaDto } from 'src/app/model/PessoaDto';
 export class ServicoPrestadoFormComponent implements OnInit {
 
   clientes: Cliente[] = []
-  pessoas: PessoaDto[] = []
+  pessoas: Pessoa[] = []
   servico: ServicoPrestado
   sucesso: boolean = false
   erros: String[]

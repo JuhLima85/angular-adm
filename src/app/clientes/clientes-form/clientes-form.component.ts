@@ -27,70 +27,63 @@ export class ClientesFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let params = this.activatedRoute.params  
-    params.subscribe( urlParams => {
-      this.id = urlParams['id'];
-      if(this.id){
-        this.service
-      .buscarClientePorId(this.id)
-      .subscribe(
-        response => this.cliente = response,
-        errorResponse => this.cliente = new Cliente()
-        )
-      }      
-      })        
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params['id'];   // 👈 vai bater certinho agora
+  
+      if (this.id) {
+        this.service.buscarPessoaPorId(this.id).subscribe({
+          next: (response) => {
+            console.log('Pessoa carregada pelo ID:', response);
+            this.pessoa = response;
+          },
+          error: (errorResponse) => {
+            console.error('Erro ao buscar pessoa:', errorResponse);
+            this.cliente = new Cliente();
+          }
+        });
+      }
+    });
   }
+  
 
   voltarParaListagem(){
     this.router.navigate(['/clientes/lista'])
-  }
-  
-    /*onSubmit(){         
-      if(this.id){
-        this.service
-          .atualizar(this.cliente)
-          .subscribe(response => {
-            this.sucesso = true;
-            this.erros = null;
-          }, erroResponse => {          
-            this.erros = ['Erro ao atualizar o cliente.']})
-  
-      }else{
-        this.service
-        .salvar(this.cliente)
-        .subscribe( response => {
-          this.sucesso = true;
-          this.erros = null;
-          this.cliente = response;
-        }, errorResponse => {                           
-          this.erros = errorResponse.error.errors;  
-           this.sucesso = false; 
-        })
-      }    
-      }*/
+  }    
       onSubmit(){         
+        console.log('Entrou no onSubmit');
         if(this.id){
+          console.log('Entrou no atualizar');
           this.service
-            .atualizar(this.cliente)
+            .atualizar(this.pessoa)
             .subscribe(response => {
               this.sucesso = true;
               this.erros = null;
             }, erroResponse => {          
               this.erros = ['Erro ao atualizar o cliente.']})
     
-        }else{
-          this.service
-          .salvar(this.pessoa)
-          .subscribe( response => {
-            this.sucesso = true;
-            this.erros = null;
-            this.cliente = response;
-          }, errorResponse => {                           
-            this.erros = errorResponse.error.errors;  
-             this.sucesso = false; 
-          })
-        }    
+        }else{         
+          this.service.salvar(this.pessoa).subscribe({
+            next: (response) => {
+              this.sucesso = true;
+              this.erros = null;
+              this.cliente = response;
+              console.log('Response: ', response);
+            },
+            error: (errorResponse) => {
+              console.error("Erro completo recebido da API:", errorResponse);
+            
+              if (errorResponse.error && errorResponse.error.message) {
+                this.erros = [errorResponse.error.message]; // usa o message do backend
+              } else {
+                this.erros = ['Erro ao salvar o cliente.'];
+              }
+              console.log('Erro final exibido: ', this.erros);
+              this.sucesso = false;
+            }
+            
+          });            
         }
+      }
 
       formatarCPF() {
         if (this.cliente.cpf) {           

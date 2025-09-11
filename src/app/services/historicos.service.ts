@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient} from '@angular/common/http';
 import { Usuario } from '../login/usuario';
-import { HistoricoDto } from '../model/HistoricoDto';
+import { Pessoa } from '../model/Pessoa';
+import { RelacionamentoDto } from '../model/RelacionamentoDto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +13,19 @@ import { HistoricoDto } from '../model/HistoricoDto';
 export class HistoricosService {
 
   usuario: Usuario;  
-  apiUrl: string = environment.apiUrlBase + '/formulario'
-  apiUrlRelacionamento: string = environment.apiUrlBase + '/relacionamento'  
+  apiUrl: string = environment.apiUrlBase + '/pessoas'
+  apiUrlParentescos: string = environment.apiUrlBase + '/parentescos'  
 
-  constructor( private http: HttpClient) {  } 
+  constructor( private http: HttpClient) {  }  
 
-  listarPessasERelacionamentos(id: number): Observable<HistoricoDto> {
-    return this.http.get<HistoricoDto>(`${this.apiUrlRelacionamento}/historico/${id}`);
-  }  
+  criarVinculo(id1: number, id2: number, tipo: string): Observable<Pessoa> {
+    return this.http.post<Pessoa>(
+      `${this.apiUrl}/${id1}/vinculo/${id2}?tipo=${tipo}`, 
+      {}
+    );
+  }
+
+  buscarRelacionamentos(id: number): Observable<RelacionamentoDto[]> {
+    return this.http.get<RelacionamentoDto[]>(`${this.apiUrlParentescos}/pessoa/${id}/relacionamentos`);
+  }
 }
