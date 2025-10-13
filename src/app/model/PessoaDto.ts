@@ -1,4 +1,4 @@
-export interface PessoaDto {
+/*export interface PessoaDto {
     idPessoa: number;
     pessoaNome: string;
     pessoaFone: string;
@@ -10,5 +10,5 @@ export interface PessoaDto {
     pessoaLocalidade?: string;
     pessoaUf?: string;
     pessoaMembro: boolean;
-  }
+  }*/
   

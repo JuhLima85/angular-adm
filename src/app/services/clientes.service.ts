@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { Cliente } from "../clientes/cliente"
-import {ClienteServicoDto} from "../shared/cliente-servico-dto/cliente-servico-dto"
+import { Cliente } from "../pages/clientes/cliente"
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient} from '@angular/common/http';
-import { Usuario } from '../login/usuario';
+import { Usuario } from '../pages/login/usuario';
 import { Pessoa } from '../model/Pessoa';
-import { PessoaDto } from '../model/PessoaDto';
-import { HistoricoDto } from '../model/HistoricoDto';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +25,7 @@ export class ClientesService {
   
   atualizar(cliente: Pessoa): Observable<Pessoa> {
     return this.http.put<Pessoa>(`${this.apiUrl}/${cliente.id}`, cliente);
-  }  
-  
-  /*buscarPessoas() : Observable<PessoaDto[]> {   
-    return this.http.get<PessoaDto[]>(this.apiUrl);
-  }*/
+  }   
 
   buscarPessoas() : Observable<Pessoa[]> {   
     return this.http.get<Pessoa[]>(this.apiUrl);

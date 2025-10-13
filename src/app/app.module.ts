@@ -1,28 +1,22 @@
-import { ServicoPrestadoService } from './services/servico-prestado.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { TemplateModule } from './template/template.module';
-import { HomeComponent } from './home/home.component'
-import { ClientesModule } from './clientes/clientes.module';
+import { HomeComponent } from './pages/home/home.component'
+import { ClientesModule } from '../app/pages/clientes/clientes.module';
 import {ClientesService} from './services/clientes.service';
-import { ServicoPrestadoModule } from './servico-prestado/servico-prestado.module';
-import { ClienteServicoDtoService } from './services/cliente-servico-dto.service';
-import { ClienteServicoDtoModule } from './shared/cliente-servico-dto/cliente-servico-dto.module';
-import { LoginComponent } from './login/login.component';
-import { LayoutComponent } from './layout/layout.component';
+import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from './pages/layout/layout.component';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './token.interceptor';
-import { CredenciaisRoutingModule } from './login/update-credenciais/credenciais-routing.module'
-import { CredenciaisModule } from './login/update-credenciais/credenciais.module';
+import { CredenciaisRoutingModule } from './pages/login/update-credenciais/credenciais-routing.module'
+import { CredenciaisModule } from './pages/login/update-credenciais/credenciais.module'; 
 import { HistoricosService } from 'src/app/services/historicos.service';
-import { HistoricosModule } from './historicos/historicos.module';
-
+import { HistoricosModule } from './pages/historicos/historicos.module';
 
 @NgModule({
   declarations: [
@@ -37,17 +31,13 @@ import { HistoricosModule } from './historicos/historicos.module';
     AppRoutingModule,
     TemplateModule, 
     ClientesModule,
-    FormsModule,
-    ServicoPrestadoModule,
-    ClienteServicoDtoModule,
+    FormsModule,        
     CredenciaisRoutingModule,
     CredenciaisModule,
     HistoricosModule,       
   ],
   providers: [    
-    ClientesService,
-    ServicoPrestadoService,
-    ClienteServicoDtoService,
+    ClientesService,        
     AuthService,
     HistoricosService,  
     {     

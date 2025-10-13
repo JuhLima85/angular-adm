@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, of,  throwError} from 'rxjs';
-import { Usuario } from '../login/usuario';
-import { Updatedto } from '../login/update-credenciais/update-dto'
+import { Usuario } from '../pages/login/usuario';
+import { Updatedto } from '../pages/login/update-credenciais/update-dto'
 import { catchError, map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { jwtDecode } from 'jwt-decode';
@@ -88,51 +88,7 @@ export class AuthService {
         })
       );
   }  
-
-  /*login(usuario: any): Observable<any> {
-    return this.http.post<any>(`${this.apiURL}/login`, usuario)
-      .pipe(
-        map(response => {
-          const token = response.token;
-          if (!token) {
-            console.error('Token não encontrado na resposta da API.');
-          } else {            
-            localStorage.setItem('token', token);
-          }
-          return response;
-        })
-      );
-  } */
-  /*login(usuario: any): Observable<any> {
-    // BYPASS DE DEV
-    if (environment.authBypass) {
-      const okUser = usuario?.login === environment.devUser;
-      const okPass = usuario?.password === environment.devPass;
-
-      if (!okUser || !okPass) {
-        // mantém o mesmo fluxo de erro do back
-        return throwError(() => ({ status: 401, error: { message: 'Credenciais inválidas (DEV)' } }));
-      }
-
-      const token = this.gerarJwtFake(environment.devUser, 1, environment.devPerfil);
-      localStorage.setItem('token', token);
-      return of({ token, devBypass: true });
-    }
-
-    // FLUXO NORMAL (produção)
-    return this.http.post<any>(`${this.apiURL}/login`, usuario)
-      .pipe(
-        map(response => {
-          const token = response?.token;
-          if (!token) {
-            console.error('Token não encontrado na resposta da API.');
-          } else {
-            localStorage.setItem('token', token);
-          }
-          return response;
-        })
-      );
-  }*/
+  
   login(usuario: any): Observable<any> {
     const usarBackend = environment.preferBackend === true;
     const permitirBypass = environment.authBypass === true;
@@ -188,6 +144,5 @@ export class AuthService {
         return response;
       })
     );
-  }
-   
+  }   
 }
