@@ -14,7 +14,6 @@ export class ClientesService {
   
   usuario: Usuario;  
   apiUrl: string = environment.apiUrlBase + '/pessoas'
-  apiUrlServico: string = environment.apiUrlBase + '/api/servicos-prestados'  
 
   constructor( private http: HttpClient) {  }  
   
@@ -27,7 +26,7 @@ export class ClientesService {
     return this.http.put<Pessoa>(`${this.apiUrl}/${cliente.id}`, cliente);
   }   
 
-  buscarPessoas() : Observable<Pessoa[]> {   
+  listarTodas() : Observable<Pessoa[]> {   
     return this.http.get<Pessoa[]>(this.apiUrl);
   }
  
