@@ -28,7 +28,7 @@ export class ClientesFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];   // 👈 vai bater certinho agora
+      this.id = params['id'];   
   
       if (this.id) {
         this.service.buscarPessoaPorId(this.id).subscribe({
@@ -43,8 +43,7 @@ export class ClientesFormComponent implements OnInit {
         });
       }
     });
-  }
-  
+  }  
 
   voltarParaListagem(){
     this.router.navigate(['/clientes/lista'])
@@ -73,7 +72,7 @@ export class ClientesFormComponent implements OnInit {
               console.error("Erro completo recebido da API:", errorResponse);
             
               if (errorResponse.error && errorResponse.error.message) {
-                this.erros = [errorResponse.error.message]; // usa o message do backend
+                this.erros = [errorResponse.error.message];
               } else {
                 this.erros = ['Erro ao salvar o cliente.'];
               }

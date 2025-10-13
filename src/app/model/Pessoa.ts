@@ -5,11 +5,13 @@ export class Pessoa {
     nome: string = '';
     fone: string = '';
     email: string = '';
-    data: string = '';        // dd/MM/yyyy (ou ISO se preferir)
+    dataNascimento: string = '';
+    dataInicioMembresia: string = '';     
+    dataCadastro: string = '';
     cep: string = '';
-    logradouro: string = '';
-    bairro: string = '';
+    logradouro: string = '';    
     localidade: string = '';
+    bairro: string = '';
     uf: string = '';
     membro: boolean;
   

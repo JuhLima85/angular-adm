@@ -2,14 +2,15 @@
 <ol class="breadcrumb mb-4" style="background-color:#b2d0f7">
     <li class="breadcrumb-item active">{{ pessoa.id ? 'Edição' : 'Cadastro' }}</li>
 </ol>
+
 <div class="container">
     <form #clienteForm="ngForm" (ngSubmit)="onSubmit()">        
         <div class="row">
             <div class="col-md-12">
-                <div class="alert alert-success" role="aler" *ngIf="sucesso == true">
+                <div class="alert alert-success" role="alert" *ngIf="sucesso == true">
                     Cadastro realizado com sucesso!
                 </div>
-                <div class="alert alert-danger" role="aler" *ngFor="let erro of erros">
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of erros">
                     {{ erro }}
                 </div>
             </div>
@@ -31,15 +32,16 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label>E-mail: </label>
-                    <input type="text" class="form-control" [(ngModel)]="pessoa.email" name="email" >
+                    <input type="text" class="form-control" [(ngModel)]="pessoa.email" name="email">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label>Data de Nascimento: </label>
-                    <input type="text" class="form-control" [(ngModel)]="pessoa.data" name="data"/>
+                    <input type="date" class="form-control" [(ngModel)]="pessoa.dataNascimento" name="dataNascimento"/>
                 </div>
-            </div>        
+            </div>            
+
             <div class="col-md-6">
                 <div class="form-group">
                     <label>CEP: </label>
@@ -60,21 +62,32 @@
             </div>  
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Membro?</label>
-                    <input type="text" class="form-control" [(ngModel)]="pessoa.membro" name="membro"/>
+                    <label for="membro">Membro?</label>
+                    <select class="form-control" [(ngModel)]="pessoa.membro" name="membro" id="membro">
+                        <option [ngValue]="true">Sim</option>
+                        <option [ngValue]="false">Não</option>
+                    </select>
                 </div>
-            </div>             
+            </div>    
+              <!-- CAMPO CONDICIONAL: Só aparece se pessoa.membro === true -->
+              <div class="col-md-6" *ngIf="pessoa.membro === true">
+                <div class="form-group">
+                    <label>Data em que se tornou membro:</label>
+                    <input type="date" class="form-control" [(ngModel)]="pessoa.dataInicioMembresia" name="dataInicioMembresia"/>
+                </div>
+            </div>                   
         </div>
+
         <div class="row-buttons">
-                <button type="submit" class="btn btn-success" *ngIf="!pessoa.id">
-                    <i class="fa fa-save" ></i> Salvar
-                </button>
-                <button type="submit" class="btn btn-primary" *ngIf="pessoa.id">
-                    <i class="fa fa-sync-alt" ></i> Atualizar
-                </button>                
-                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
-                    <i class="fa fa-arrow-alt-circle-left" ></i> Voltar
-                </button>
-            </div>           
+            <button type="submit" class="btn btn-success" *ngIf="!pessoa.id">
+                <i class="fa fa-save"></i> Salvar
+            </button>
+            <button type="submit" class="btn btn-primary" *ngIf="pessoa.id">
+                <i class="fa fa-sync-alt"></i> Atualizar
+            </button>                
+            <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+            </button>
+        </div>           
     </form>
-</div> 
+</div>

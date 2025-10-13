@@ -28,7 +28,7 @@
                 <tr style="color:#555454">                                     
                     <th>Nome</th>
                     <th>Telefone</th>
-                    <th>E-mail</th>
+                    <th>Membro</th>
                     <th>Data Nacimento</th>                                       
                     <th></th>
                 </tr>
@@ -37,8 +37,8 @@
                 <tr *ngFor="let pessoa of pessoas"  [ngClass]="{ 'nao-membro': !pessoa.membro }">                   
                     <td>{{ pessoa.nome }}</td>
                     <td>{{ pessoa.fone }}</td>
-                    <td>{{ pessoa.email }}</td>
-                    <td>{{ pessoa.data }}</td>                                                      
+                    <td>{{ pessoa.membro ? 'Sim' : 'Não' }}</td>
+                    <td>{{ pessoa.dataNascimento }}</td>                                                      
                     <td>
                         <button class="btn btn-primary" [routerLink]="['/clientes/form', pessoa.id]" title="Editar">
                             <i class="fa fa-edit"></i>
