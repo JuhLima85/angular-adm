@@ -1,0 +1,32 @@
+<div class="modal fade" id="modalRelatorio" tabindex="-1" aria-labelledby="relatorioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="relatorioLabel">Gerar Relatório</h5>
+        </div>
+  
+        <div class="modal-body">
+          <p>Escolha o tipo de relatório:</p>
+  
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipo" value="todos" [(ngModel)]="tipoRelatorio">
+            <label class="form-check-label">Todos</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipo" value="membros" [(ngModel)]="tipoRelatorio">
+            <label class="form-check-label">Somente Membros</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipo" value="naoMembros" [(ngModel)]="tipoRelatorio">
+            <label class="form-check-label">Somente Não-Membros</label>
+          </div>
+        </div>
+  
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="fechar()">Cancelar</button>
+          <button class="btn btn-primary" (click)="confirmar()">Gerar PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
