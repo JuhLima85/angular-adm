@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,8 @@ import { CredenciaisRoutingModule } from './pages/login/update-credenciais/crede
 import { CredenciaisModule } from './pages/login/update-credenciais/credenciais.module'; 
 import { HistoricosService } from 'src/app/services/historicos.service';
 import { HistoricosModule } from './pages/historicos/historicos.module';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { initializeKeycloak } from './shared/config/keycloak-init';
 
 //app.module.ts
 @NgModule({
@@ -35,7 +37,8 @@ import { HistoricosModule } from './pages/historicos/historicos.module';
     FormsModule,        
     CredenciaisRoutingModule,
     CredenciaisModule,
-    HistoricosModule           
+    HistoricosModule,
+    KeycloakAngularModule           
   ],
   providers: [    
     PessoaService,        
@@ -45,6 +48,12 @@ import { HistoricosModule } from './pages/historicos/historicos.module';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
+    }, 
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
     } 
   ],
   bootstrap: [AppComponent]

@@ -36,7 +36,7 @@ export class CredenciaisComponent {
   }  
 
   atualizar(){   
-  this.dadosAtualizacao.userExistenteLogin = this.authService.getUsuarioAutenticado().nomeUsuario;   
+ /* this.dadosAtualizacao.userExistenteLogin = this.authService.getUsuarioAutenticado().nomeUsuario;   
    this.dadosAtualizacao.userAtualRole = this.authService.getUsuarioAutenticado().perfil;      
 
     this.authService.atualizar(this.dadosAtualizacao).subscribe(      
@@ -48,12 +48,12 @@ export class CredenciaisComponent {
         this.mensagemSucesso = null;   
         this.errors = errorResponse.error.errors;  
       }
-    );
+    );*/
   }  
 
   ngOnInit(): void {
-    this.usuarioLogado = this.authService.getUsuarioAutenticado().nomeUsuario;
-    this.role = this.authService.getUsuarioAutenticado().perfil;
-    this.dadosAtualizacao.userId = this.authService.getUsuarioAutenticado().idUsuario;
+    //this.usuarioLogado = this.authService.getUsuarioAutenticado().nomeUsuario;
+    //this.role = this.authService.getUsuarioAutenticado().perfil;
+   // this.dadosAtualizacao.userId = this.authService.getUsuarioAutenticado().idUsuario;
   }
 }

@@ -49,7 +49,7 @@ export class LoginComponent {
     this.errors = [];
     this.loading = true;
   
-    this.login(); 
+    //this.login(); 
   }
 
   retornarAoPortofolio(): void {
@@ -76,7 +76,7 @@ export class LoginComponent {
     this.errors = [];
     this.loading = true;
 
-    this.authService.registrar(this.usuario)
+   /* this.authService.registrar(this.usuario)
       .pipe(finalize(() => this.loading = false))
       .subscribe({
         next: () => {
@@ -94,10 +94,10 @@ export class LoginComponent {
           const backendErrors = (errorResponse?.error?.errors as string[]) || [];
           this.errors = backendErrors.length ? backendErrors : ['Erro ao registrar usuário.'];
         }
-      });
+      });*/
   }
    
-  private login(): void {
+  /*private login(): void {
     this.authService.login(this.usuario)
       .pipe(finalize(() => this.loading = false))
       .subscribe({
@@ -119,7 +119,7 @@ export class LoginComponent {
             this.errors = ['Erro ao efetuar login. Tente novamente.'];
           }
         }
-      });
+      });*/
   
 }
-}
+
