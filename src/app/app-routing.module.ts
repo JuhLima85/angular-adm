@@ -8,8 +8,8 @@ import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   { path: 'login', component: LoginComponent}, 
   {path: '', component: LayoutComponent, children:[
-    { path:'home', component: HomeComponent, canActivate : [AuthGuard] },   
-    { path: '', redirectTo: '/home', pathMatch: 'full' } // qndo acessar a url raiz será redirecionado para a pg home
+    { path:'home', component: HomeComponent, canActivate : [AuthGuard] },       
+    { path: '', redirectTo: '/home', pathMatch: 'full' }
   ]}
 ];
 

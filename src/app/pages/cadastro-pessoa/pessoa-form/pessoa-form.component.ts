@@ -1,28 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Cliente } from '../cliente'
-import { ClientesService } from 'src/app/services/clientes.service'; 
+import { PessoaService } from  'src/app/services/pessoa.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Pessoa } from 'src/app/model/Pessoa'; 
 
 @Component({
-  selector: 'app-clientes-form',
-  templateUrl: './clientes-form.component.html',
-  styleUrls: ['./clientes-form.component.css']
+  selector: 'app-pessoa-form',
+  templateUrl: './pessoa-form.component.html',
+  styleUrls: ['./pessoa-form.component.css']
 })
-export class ClientesFormComponent implements OnInit {
+export class PessoaFormComponent implements OnInit {
 
-  cliente: Cliente;
   pessoa: Pessoa;
   sucesso: boolean = false;
   erros: String[];
   id: number;
 
   constructor(
-    private service: ClientesService,
+    private service: PessoaService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
-    this.cliente = new Cliente();
+    private activatedRoute: ActivatedRoute) { 
     this.pessoa = new Pessoa();
   }
 
@@ -36,9 +33,8 @@ export class ClientesFormComponent implements OnInit {
             console.log('Pessoa carregada pelo ID:', response);
             this.pessoa = response;
           },
-          error: (errorResponse) => {
-            console.error('Erro ao buscar pessoa:', errorResponse);
-            this.cliente = new Cliente();
+          error: (errorResponse) => {           
+            this.pessoa = new Pessoa();
           }
         });
       }
@@ -46,8 +42,9 @@ export class ClientesFormComponent implements OnInit {
   }
 
   voltarParaListagem() {
-    this.router.navigate(['/clientes/lista'])
+    this.router.navigate(['/pessoa/lista'])
   }
+
   onSubmit() {
     if (this.id) {
       this.service
@@ -56,7 +53,7 @@ export class ClientesFormComponent implements OnInit {
           this.sucesso = true;
           this.erros = null;
         }, erroResponse => {
-          this.erros = ['Erro ao atualizar o cliente.']
+          this.erros = ['Erro ao atualizar o pessoa.']
         })
 
     } else {
@@ -64,13 +61,13 @@ export class ClientesFormComponent implements OnInit {
         next: (response) => {
           this.sucesso = true;
           this.erros = null;
-          this.cliente = response;
+          this.pessoa = response;
         },
         error: (errorResponse) => {
           if (errorResponse.error && errorResponse.error.message) {
             this.erros = [errorResponse.error.message];
           } else {
-            this.erros = ['Erro ao salvar o cliente.'];
+            this.erros = ['Erro ao salvar o pessoa.'];
           }
           this.sucesso = false;
         }
@@ -79,15 +76,15 @@ export class ClientesFormComponent implements OnInit {
   }
 
   formatarTelefone() {
-    if (this.cliente.telefone) {
-      let telefoneSemMascara = this.cliente.telefone.replace(/\D/g, '');
+    if (this.pessoa.fone) {
+      let telefoneSemMascara = this.pessoa.fone.replace(/\D/g, '');
 
       if (telefoneSemMascara.length <= 2) {
-        this.cliente.telefone = telefoneSemMascara;
+        this.pessoa.fone = telefoneSemMascara;
       } else if (telefoneSemMascara.length <= 6) {
-        this.cliente.telefone = `(${telefoneSemMascara.substring(0, 2)}) ${telefoneSemMascara.substring(2)}`;
+        this.pessoa.fone = `(${telefoneSemMascara.substring(0, 2)}) ${telefoneSemMascara.substring(2)}`;
       } else {
-        this.cliente.telefone = `(${telefoneSemMascara.substring(0, 2)}) ${telefoneSemMascara.substring(2, 6)}-${telefoneSemMascara.substring(6)}`;
+        this.pessoa.fone = `(${telefoneSemMascara.substring(0, 2)}) ${telefoneSemMascara.substring(2, 6)}-${telefoneSemMascara.substring(6)}`;
       }
     }
   }

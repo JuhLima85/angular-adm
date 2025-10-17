@@ -7,8 +7,8 @@ import { AppComponent } from './app.component';
 
 import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './pages/home/home.component'
-import { ClientesModule } from '../app/pages/clientes/clientes.module';
-import {ClientesService} from './services/clientes.service';
+import { PessoaModule } from './pages/cadastro-pessoa/pessoa.module'
+import { PessoaService} from './services/pessoa.service';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { AuthService } from './services/auth.service';
@@ -18,26 +18,27 @@ import { CredenciaisModule } from './pages/login/update-credenciais/credenciais.
 import { HistoricosService } from 'src/app/services/historicos.service';
 import { HistoricosModule } from './pages/historicos/historicos.module';
 
+//app.module.ts
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    LayoutComponent,    
+    LayoutComponent     
   ],
-  imports: [  
+  imports: [   
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     TemplateModule, 
-    ClientesModule,
+    PessoaModule,
     FormsModule,        
     CredenciaisRoutingModule,
     CredenciaisModule,
-    HistoricosModule,       
+    HistoricosModule           
   ],
   providers: [    
-    ClientesService,        
+    PessoaService,        
     AuthService,
     HistoricosService,  
     {     

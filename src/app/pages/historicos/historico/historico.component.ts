@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Pessoa } from 'src/app/model/Pessoa';
-import { ClientesService } from 'src/app/services/clientes.service';
 import { HistoricosService } from 'src/app/services/historicos.service';
+import { PessoaService } from 'src/app/services/pessoa.service';
 
 @Component({
   selector: 'app-historico',
@@ -22,7 +22,7 @@ export class HistoricoComponent implements OnInit {
   constructor(
     private router: Router,
     private historicoService: HistoricosService,
-    private clientesService: ClientesService  
+    private pessoaService: PessoaService  
   ) {}
   
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class HistoricoComponent implements OnInit {
   }
 
   listarTodos() {
-    this.clientesService.buscarPessoas().subscribe({
+    this.pessoaService.listarTodas().subscribe({
       next: (resposta) => {        
         this.pessoasDisponiveis = resposta.filter(p => p.id !== this.pessoa.id);        
       },
@@ -88,7 +88,7 @@ export class HistoricoComponent implements OnInit {
   }
     
   voltarParaListagem() {
-    this.router.navigate(['/clientes/lista']);
+    this.router.navigate(['/pessoa/lista']);
   }  
   
 }

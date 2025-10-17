@@ -14,11 +14,18 @@
         </div>
     </div>
 <div class="row">
-    <div class="col-md-12">
-        <button class="btn btn-success" (click)="novoCadastro()">
-            <i class="fa fa-plus"></i> Novo
-        </button>
-    </div>
+   <div class="row-buttons mb-3">
+  <button class="btn btn-success" routerLink="/pessoa/form">
+    <i class="fa fa-plus"></i> Novo Cadastro
+  </button>
+  <button
+        *ngIf="pessoas && pessoas.length > 0"
+        class="btn btn-primary ml-2"
+        (click)="abrirModal()">
+        <i class="fa fa-file-pdf"></i> Gerar Relatório
+      </button>
+</div>
+
 </div>
 <br/>
 <div class="row">
@@ -29,7 +36,8 @@
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Membro</th>
-                    <th>Data Nacimento</th>                                       
+                    <th>Data Nacimento</th>
+                    <th>Ações</th>                                       
                     <th></th>
                 </tr>
             </thead>
@@ -40,10 +48,10 @@
                     <td>{{ pessoa.membro ? 'Sim' : 'Não' }}</td>
                     <td>{{ pessoa.dataNascimento }}</td>                                                      
                     <td>
-                        <button class="btn btn-primary" [routerLink]="['/clientes/form', pessoa.id]" title="Editar">
+                        <button class="btn btn-primary" [routerLink]="['/pessoa/form', pessoa.id]" title="Editar">
                             <i class="fa fa-edit"></i>
                         </button>                                                 
-                        <button class="btn btn-danger ml-2"  (click)="exibirClienteModalDelet(pessoa)"
+                        <button class="btn btn-danger ml-2"  (click)="exibirModalDelet(pessoa)"
                                 data-toggle="modal" data-target="#modalDelecao" title="Excluir">
                             <i class="fa fa-trash"></i>
                         </button>                       
@@ -62,14 +70,15 @@
             <div class="modal-header">
                 <h4>Confirmação</h4>
             </div>             
-            <div class="modal-body" *ngIf="clienteSelecionado">
-                Tem certeza que deseja excluir o cliente  {{ clienteSelecionado.nome }} ?           
+            <div class="modal-body" *ngIf="pessoaSelecionada">
+                Tem certeza que deseja excluir o cadastro  {{ pessoaSelecionada.nome }} ?           
             </div>
             <div class="modal-footer">
-                <button class="btn btn-success" (click)="deletarCliente()" data-dismiss="modal">Com certeza</button>
+                <button class="btn btn-success" (click)="deletarCadastro()" data-dismiss="modal">Com certeza</button>
                 <button class="btn btn-danger" data-dismiss="modal">Não, Obrigada.</button>
             </div>
         </div>
     </div>
 </div>
 </div>
+<app-relatorio-modal (gerar)="gerarRelatorio($event)"></app-relatorio-modal>
