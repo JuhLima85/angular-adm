@@ -1,0 +1,70 @@
+<h1 class="mt-4" style="color:#2f86e2">Credenciais</h1>
+<ol class="breadcrumb mb-4" style="background-color:#b2d0f7">
+    <li class="breadcrumb-item active">Cadastro de Novo Usuário</li>
+</ol>
+
+<div class="container">
+    <form #loginForm="ngForm" (submit)="onSubmit();">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" *ngIf="mensagemSucesso">
+                    {{ mensagemSucesso }}
+                </div>
+                <div class="alert alert-danger" *ngFor="let erro of errors">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" class="form-control form-control-user" name="username" [(ngModel)]="usuario.username"
+                    autocomplete="off" placeholder="Digite o nome de usuário.">
+            </div>
+            <div class="col-md-6">
+                <input type="password" class="form-control form-control-user" name="password"
+                    [(ngModel)]="usuario.password" placeholder="Digite a senha.">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <input type="text" class="form-control form-control-user" name="firstName"
+                    [(ngModel)]="usuario.firstName" placeholder="Primeiro nome.">
+            </div>
+
+            <div class="col-md-6">
+                <input type="text" class="form-control form-control-user" name="lastName" [(ngModel)]="usuario.lastName"
+                    placeholder="Sobrenome.">
+            </div>
+        </div>       
+        <div class="form-group mb-3">
+            <input type="email" class="form-control form-control-user" name="email" [(ngModel)]="usuario.email"
+                placeholder="E-mail do usuário.">
+        </div>       
+        <div class="form-group mb-3">
+            <label for="roles" class="form-label">
+                Selecione um Perfil:
+                <i class="bi bi-question-circle ms-1 text-primary" data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="🧩 Perfis disponíveis:
+                    • ADMIN: Acesso total ao sistema.
+                    • GESTOR: Acesso a quase tudo, exceto criar novos usuários.
+                    • CONSULTA: Apenas leitura e relatórios.">
+                </i>
+            </label>
+            <select [(ngModel)]="usuario.roleSelecionado" class="form-control" name="roleSelecionado">
+                <option *ngFor="let perfil of perfis" [value]="perfil">{{ perfil }}</option>
+            </select>
+        </div>        
+        <div class="d-flex justify-content-start mt-3">
+            <button type="button" class="btn btn-success btn-sm px-4" style="min-width: 110px; margin-right: 8px;"
+                (click)="registrar()">
+                Cadastrar
+            </button>
+
+            <button type="button" class="btn btn-danger btn-sm px-4" style="min-width: 110px;"
+                (click)="cancelarCadastro($event)">
+                <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+            </button>
+        </div>
+    </form>
+</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">

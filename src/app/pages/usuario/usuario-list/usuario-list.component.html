@@ -1,0 +1,87 @@
+<h1 class="mt-4" style="color:#2f86e2">Membros</h1>
+<ol class="breadcrumb mb-4" style="background-color:#b2d0f7">
+    <li class="breadcrumb-item active" style="color:#6e6e6e">Novo Cadastro</li>
+</ol>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="aler" *ngIf="mensagemSucesso">
+                {{ mensagemSucesso }}
+            </div>
+            <div class="alert alert-danger" role="aler" *ngIf="mensagemErro">
+                {{ mensagemErro }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row-buttons mb-3">
+            <button class="btn btn-success" routerLink="/usuario/form">
+                <i class="fa fa-plus"></i> Novo Cadastro
+            </button>
+            <button *ngIf="usuarios && usuarios.length > 0" class="btn btn-primary ml-2" (click)="abrirModal()">
+                <i class="fa fa-file-pdf"></i> Gerar Relatório
+            </button>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr style="color:#555454">
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Perfil</th>
+                        <th>Ações</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let usuario of usuarios" [ngClass]="{ 'nao-membro': !usuario.membro }">
+                        <td>{{ usuario.username }}</td>
+                        <td>{{ usuario.email }}</td>
+
+                        <td>
+                            <span *ngFor="let role of usuario.roles" class="badge bg-primary me-1">
+                                {{ role }}
+                            </span>
+                        </td>
+                        <td>
+                            <button class="btn ml-2" [ngClass]="{
+                          'btn-danger': !botaoDesabilitado(usuario),
+                          'btn-secondary': botaoDesabilitado(usuario)
+                        }" [disabled]="botaoDesabilitado(usuario)" (click)="exibirModalDelet(usuario)"
+                                [attr.title]="botaoDesabilitado(usuario) ? 'Exclusão não permitida' : 'Excluir'">
+                                <i class="fa"
+                                    [ngClass]="{'fa-trash': !botaoDesabilitado(usuario), 'fa-lock': botaoDesabilitado(usuario)}"></i>
+                            </button>
+
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div #modalDelecao class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Confirmação</h4>
+                    </div>
+                    <div class="modal-body" *ngIf="usuarioSelecionado">
+                        Tem certeza que deseja excluir o cadastro {{ usuarioSelecionado.username }}?
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" (click)="deletarCadastro()">
+                            Sim
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="modalInstance?.hide()">
+                            Não
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

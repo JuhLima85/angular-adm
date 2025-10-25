@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient} from '@angular/common/http';
-import { Usuario } from '../pages/login/usuario';
+import { Usuario } from '../pages/usuario/usuario';
 import { Pessoa } from '../model/Pessoa';
 import { RelacionamentoDto } from '../model/RelacionamentoDto';
 

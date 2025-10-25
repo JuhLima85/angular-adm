@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-credenciais',
-  templateUrl: './credenciais.component.html',
-  styleUrls: ['./credenciais.component.css']
+  templateUrl: './usuario-update.component.html',
+  styleUrls: ['./usuario-update.component.css']
 })
-export class CredenciaisComponent {
+export class UsuarioUpdateComponent {
 
   usuarioParaAtualizar: Usuario;
   dadosAtualizacao: Updatedto;

@@ -9,34 +9,36 @@ import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './pages/home/home.component'
 import { PessoaModule } from './pages/cadastro-pessoa/pessoa.module'
 import { PessoaService} from './services/pessoa.service';
-import { LoginComponent } from './pages/login/login.component';
+import { UsuarioFormComponent } from './pages/usuario/usuario-form/usuario-form.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './token.interceptor';
-import { CredenciaisRoutingModule } from './pages/login/update-credenciais/credenciais-routing.module'
-import { CredenciaisModule } from './pages/login/update-credenciais/credenciais.module'; 
+import { UsuarioRoutingModule } from './pages/usuario/usuario-routing.module';
+import { UsuarioUpdateModule } from './pages/usuario/usuario-update/usuario-update.module';
 import { HistoricosService } from 'src/app/services/historicos.service';
 import { HistoricosModule } from './pages/historicos/historicos.module';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { initializeKeycloak } from './shared/config/keycloak-init';
+import { UsuarioListComponent } from './pages/usuario/usuario-list/usuario-list.component';
 
 //app.module.ts
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent,
-    LayoutComponent     
+    UsuarioFormComponent,
+    LayoutComponent,
+    UsuarioListComponent
   ],
-  imports: [   
+  imports: [ 
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     TemplateModule, 
     PessoaModule,
     FormsModule,        
-    CredenciaisRoutingModule,
-    CredenciaisModule,
+    UsuarioRoutingModule,
+    UsuarioUpdateModule,
     HistoricosModule,
     KeycloakAngularModule           
   ],

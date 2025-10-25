@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HistoricosService } from 'src/app/services/historicos.service';
 import { Pessoa } from 'src/app/model/Pessoa';
 import { RelatorioService } from 'src/app/services/relatorio.service';
-import { RelatorioModalComponent } from 'src/app/shared/relatorio-modal/relatorio-modal.component';
+import { RelatorioModalComponent } from 'src/app/shared/component/relatorio-modal/relatorio-modal.component';
 import { ViewChild } from '@angular/core';
 
 @Component({

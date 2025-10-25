@@ -13,8 +13,8 @@ export class SidebarComponent implements OnInit {
    isSidebarVisible: boolean = true; 
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    public authService: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {

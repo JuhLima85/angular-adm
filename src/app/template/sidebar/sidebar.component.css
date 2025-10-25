@@ -17,3 +17,18 @@
     font-size: 14px;
     font-weight: normal;
 }
+
+/* Sobe o conteúdo do menu lateral */
+.sb-sidenav {
+    padding-top: 70px !important;
+  }
+  
+  .sb-sidenav .sb-sidenav-menu {
+    margin-top: -10px !important; /* sobe todo o menu */
+  }
+  
+  .sb-sidenav .nav .sb-sidenav-menu-heading:first-of-type {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  

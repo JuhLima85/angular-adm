@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { PessoaRoutingModule } from './pessoa-routing.module';
 import { PessoaFormComponent } from './pessoa-form/pessoa-form.component';
 import { PessoaListaComponent } from './pessoa-lista/pessoa-lista.component';
-import { RelatorioModalComponent } from 'src/app/shared/relatorio-modal/relatorio-modal.component';
+import { RelatorioModalComponent } from 'src/app/shared/component/relatorio-modal/relatorio-modal.component';
 
 
 // pessoa.module.ts

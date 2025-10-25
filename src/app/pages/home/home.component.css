@@ -7,19 +7,17 @@ h1.mt-4 {
     color:rgb(59, 59, 59);
 }
 
-/* Estilos para a marca d'água */
-#layoutSidenav_content main { /* Ou apenas 'main' se for o único main na página */
+#layoutSidenav_content main { 
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
 
-#layoutSidenav_content main::before { /* Ou apenas 'main::before' */
-    content: "";
-    background-image: url('../../../assets/img/sibre.jpg'); /* Caminho da sua imagem */
+#layoutSidenav_content main::before {
+    content: "";   
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    opacity: 0.08; /* Ajuste a opacidade. Um valor um pouco menor (0.08) pode ser mais discreto */
+    opacity: 0.08;
     position: absolute;
     top: 0;
     left: 0;
@@ -27,5 +25,39 @@ h1.mt-4 {
     height: 100%;
     z-index: -1;
 }
+
+.sb-topnav {
+    background-color: #6caafc;
+}
+
+.pai {
+    background-color: #6caafc;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 10px;   
+    height: 400px;
+}
+
+.card-body {  
+    padding: 1.5rem !important; 
+}
+
+.card-body .row {
+    height: 100%;
+}
+
+.logo-container {  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-container img {   
+    max-width: 250px;   
+}
+
+
+
+
 
 
