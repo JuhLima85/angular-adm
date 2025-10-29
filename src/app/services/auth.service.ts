@@ -27,6 +27,8 @@ export class AuthService {
         idUsuario: tokenParsed.sub,
         nomeUsuario: tokenParsed.preferred_username,
         nomeCompleto: tokenParsed.name ?? '',
+        firstName: tokenParsed.given_name ?? '',
+        lastName: tokenParsed.family_name ?? '',
         email: tokenParsed.email ?? '',
         roles: this.getRoles()
       };

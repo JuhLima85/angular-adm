@@ -2,24 +2,28 @@
 <div id="layoutSidenav">
   <app-sidebar></app-sidebar>
   <div id="layoutSidenav_content">
-    <main>
+    <main>      
       <div class="container-fluid">
         <router-outlet></router-outlet>
       </div>
       <footer class="py-4 bg-light mt-5">
         <div class="container-fluid">
           <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Juliana Souza 2025</div>
+            <small class="text-muted">
+              Segunda Igreja Batista no Recanto das Emas - {{ currentYear }}
+            </small>
             <div>
-              <a href="https://wa.me/5561998270529?text=Ol%C3%A1%20Juliana,%20preciso%20de%20suporte." target="_blank"
-                rel="noopener noreferrer" class="whats-link text-decoration-none d-inline-flex align-items-center"
+              <a href="https://wa.me/5561998270529?text=Ol%C3%A1%20Juliana,%20preciso%20de%20suporte%20com%20o%20site%20da%20SIBRE."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="whats-link text-decoration-none d-inline-flex align-items-center"
                 aria-label="Suporte técnico via WhatsApp">
                 <i class="fab fa-whatsapp mr-2 text-success"></i>
-                <span class="text-muted">Para Suporte Técnico clique aqui.</span>                
-              </a>            
+                <span class="text-muted">Suporte Técnico</span>
+              </a>
             </div>
-            </div>
-            </div>
+          </div>
+        </div>
       </footer>
     </main>
   </div>

@@ -28,7 +28,7 @@ export class RelatorioModalComponent {
   fechar() {
     if (this.modalInstance) {
       this.modalInstance.hide();
-      this.modalInstance = null; // limpa referência
+      this.modalInstance = null; 
     }
   }
 }

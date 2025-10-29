@@ -1,12 +1,15 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark px-2">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark px-2">
     <div class="d-flex align-items-center">
-      <a class="navbar-brand d-flex align-items-center m-0 p-0" href="home">
-        <img src="assets/img/logo4_sem_fundo.png" alt="Logo SIBRE" class="brand-logo mr-2" />
-        <h4 class="m-0 brand-text">SIBRE</h4>
-        <button class="btn btn-link p-0" style="margin-left: 60px"  id="sidebarToggle" type="button" aria-label="Abrir menu">
-            <i class="fas fa-bars" style="color:#fff"></i>
+      <a class="navbar-brand d-flex align-items-center m-0 p-0" href="home">      
+        <h4 class="m-0 brand-text" style="color:#0051B4">SIBRE</h4>
+        <button class="btn btn-link p-0" style="margin-left: 100px"  id="sidebarToggle" type="button" aria-label="Abrir menu">
+            <i class="fas fa-bars" style="color:#0051B4"></i>
         </button>
       </a>      
     </div>
+    <div class="sb-sidenav-credencial ms-auto d-flex align-items-center">      
+      <div class="small me-4">Usuário: <span class="credenciais">{{ usuarioLogado?.firstName | titlecase}} {{ usuarioLogado?.lastName | titlecase}} </span></div>
+        
+    </div>        
   </nav>
   

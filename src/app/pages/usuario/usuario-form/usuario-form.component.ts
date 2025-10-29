@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { environment } from 'src/environments/environment';
@@ -31,11 +32,7 @@ export class UsuarioFormComponent {
     this.perfis = ['ADMIN', 'GESTOR', 'CONSULTA']; 
     this.mensagemSucesso = '';
     this.errors = [];
-  }
-
-  async ngOnInit(): Promise<void> {  
-    console.log('Usuário logado:', this.usuarioLogado);
-  }
+  }   
 
   onSubmit(){
     if (this.loading) return;
@@ -64,26 +61,41 @@ export class UsuarioFormComponent {
     this.errors = [];
     this.loading = true;
   
-    this.usuario.roles = [this.usuario.roleSelecionado!.toLowerCase()];
+    this.usuario.roles = this.usuario.roleSelecionado
+    ? [this.usuario.roleSelecionado.toLowerCase()]
+    : [];
+  
     this.usuarioService.criarUsuario(this.usuario)
       .pipe(finalize(() => this.loading = false))
       .subscribe({
         next: (resposta) => {
-          this.mensagemSucesso = resposta || 'Usuário criado com sucesso!';
+          this.mensagemSucesso = (resposta as any)?.message || 'Usuário criado com sucesso!';
           this.cadastrando = false;
           this.usuario = new KeycloakUserDTO();
         },
-        error: (errorResponse) => {
-          console.error('Erro ao criar usuário:', errorResponse);
+        error: (errorResponse) => {        
+          let mensagemApi: string | null = null;
         
-          if (errorResponse.status === 409) {
-            this.errors = ['Já existe um usuário com este e-mail ou nome de usuário.'];
-          } else if (errorResponse.error?.message) {
-            this.errors = [errorResponse.error.message];
+          try {
+            // Se o backend mandou um JSON em formato de string, tenta converter
+            if (typeof errorResponse.error === 'string') {
+              const parsed = JSON.parse(errorResponse.error);
+              mensagemApi = parsed.message;
+            } else {
+              mensagemApi = errorResponse?.error?.message;
+            }
+          } catch (e) {
+            console.warn('Falha ao converter mensagem de erro:', e);
+          }
+        
+          if (mensagemApi) {
+            this.errors = [mensagemApi];
+          } else if (errorResponse.status === 0) {
+            this.errors = ['Não foi possível conectar ao servidor. Verifique sua conexão.'];
           } else {
             this.errors = ['Erro ao registrar usuário. Tente novamente mais tarde.'];
           }
-        }
+        }        
       });
   }    
 }

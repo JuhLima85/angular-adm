@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { APP_NAME, APP_VERSION } from 'src/app/shared/config/version';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SidebarComponent implements OnInit {
 
   usuarioLogado: any;   
-   isSidebarVisible: boolean = true; 
+  isSidebarVisible: boolean = true; 
+  appName = APP_NAME;
+  appVersion = APP_VERSION;
 
   constructor(
     public authService: AuthService,

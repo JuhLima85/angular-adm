@@ -11,11 +11,12 @@ const routes: Routes = [
     path: 'usuario',
     component: LayoutComponent,
     canActivate: [AuthGuard],
+    data: { roles: ['admin', 'gestor', 'consulta'] },
     children: [
-      { path: 'update', component: UsuarioUpdateComponent },
-      { path: 'form', component: UsuarioFormComponent},
-      { path: 'list', component: UsuarioListComponent},
-      { path: '', redirectTo: '/usuario/update', pathMatch: 'full' }     
+      { path: 'update', component: UsuarioUpdateComponent, data: { roles: ['admin', 'gestor', 'consulta']}},
+      { path: 'form', component: UsuarioFormComponent, data: { roles: ['admin']}},
+      { path: 'list', component: UsuarioListComponent, data: { roles: ['admin', 'gestor']}},
+      { path: '', redirectTo: 'update', pathMatch: 'full' }  
     ]
   },  
 ];

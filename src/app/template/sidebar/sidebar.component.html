@@ -16,10 +16,9 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-columns" style="color: #2f86e2;"></i></div>
                     Membros
                 </a>
-
                 <div class="sb-sidenav-menu-heading" style="color: #2f86e2;">Usuários</div>
-                <a  *ngIf="authService.hasRole('admin')"
-                class="nav-link collapsed" routerLink="/usuario/form" style="color: #6e6e6e;">
+                <a *ngIf="authService.hasRole('admin')" class="nav-link collapsed" routerLink="/usuario/form"
+                    style="color: #6e6e6e;">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-user-plus" style="color: #2f86e2;"></i>
                     </div>
@@ -37,7 +36,6 @@
                     </div>
                     Alterar Senha
                 </a>
-
                 <div class="sb-sidenav-menu-heading" style="color: #2f86e2;">Logout</div>
                 <a class="nav-link collapsed" (click)="logout();" href="#" data-toggle="collapse"
                     data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
@@ -48,8 +46,12 @@
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Usuário: <span>{{ usuarioLogado.nomeUsuario }}</span></div>
-            <div class="small">Perfil: <span>{{ usuarioLogado.perfil }}</span></div>
-        </div>
+            <a class="nav-link footer-link">
+              <div class="sb-nav-link-icon">
+                <i class="fas fa-tag"></i>
+              </div>
+              <span>{{ appName }} v{{ appVersion }}</span>
+            </a>
+          </div>          
     </nav>
 </div>

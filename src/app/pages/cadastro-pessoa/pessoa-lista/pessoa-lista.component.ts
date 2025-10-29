@@ -75,10 +75,6 @@ carregarHistorico(id: number): void {
   });
 }
 
-gerarPdf(): void {
-  this.relatorioService.gerarRelatorioPessoas(this.pessoas);
-}
-
 gerarRelatorio(tipo: string) {
   let pessoasFiltradas = this.pessoas;
 
@@ -88,6 +84,6 @@ gerarRelatorio(tipo: string) {
     pessoasFiltradas = this.pessoas.filter(p => !p.membro);
   }
 
-  this.relatorioService.gerarRelatorioPessoas(pessoasFiltradas);
+  this.relatorioService.gerarRelatorioPessoas(pessoasFiltradas, tipo);
 }
 }

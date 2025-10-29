@@ -8,6 +8,8 @@ import jQuery from 'jquery'
 })
 export class LayoutComponent implements AfterViewInit {
 
+  currentYear = new Date().getFullYear();
+
   constructor() { }
 
   ngAfterViewInit(): void {
@@ -27,5 +29,4 @@ export class LayoutComponent implements AfterViewInit {
       });
   })(jQuery);
   }
-
 }

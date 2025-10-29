@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../usuario';
-import { Updatedto } from './update-dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { KeycloakUserDTO } from 'src/app/model/KeycloakUserDTO ';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-credenciais',
@@ -11,21 +11,35 @@ import { Router } from '@angular/router';
 })
 export class UsuarioUpdateComponent {
 
-  usuarioParaAtualizar: Usuario;
-  dadosAtualizacao: Updatedto;
+  usuarioLogado: KeycloakUserDTO; 
   role: string;   
   mensagemSucesso: string;
   errors: string[];
-  usuarioLogado: any; 
+  idUsuarioLogado: string;
+  novaSenha: string;
 
   constructor(   
+    private service: UsuarioService,
     private authService: AuthService,
     private router : Router
   ) { 
-    this.usuarioParaAtualizar = new Usuario();
-    this.dadosAtualizacao = new Updatedto();
+    this.usuarioLogado = new KeycloakUserDTO();   
   }
 
+  async ngOnInit(): Promise<void> {      
+    await this.authService.getUsuarioAutenticado().then(user => {
+      if (user) {
+        this.usuarioLogado.id = user.idUsuario;
+        this.usuarioLogado.username = user.nomeUsuario;
+        this.usuarioLogado.firstName = user.firstName;
+        this.usuarioLogado.lastName = user.lastName;
+        this.usuarioLogado.email = user.email;
+        this.usuarioLogado.roles = user.roles;
+        this.idUsuarioLogado = user.idUsuario;
+      }
+    });    
+  }
+   
   onSubmit(){   
     this.atualizar();    
   }
@@ -35,25 +49,17 @@ export class UsuarioUpdateComponent {
     this.router.navigate(['/home']); 
   }  
 
-  atualizar(){   
- /* this.dadosAtualizacao.userExistenteLogin = this.authService.getUsuarioAutenticado().nomeUsuario;   
-   this.dadosAtualizacao.userAtualRole = this.authService.getUsuarioAutenticado().perfil;      
-
-    this.authService.atualizar(this.dadosAtualizacao).subscribe(      
+  atualizar() {
+    this.usuarioLogado.password = this.novaSenha;  
+    this.service.atualizarUsuario(this.idUsuarioLogado, this.usuarioLogado).subscribe(      
       (response) => {               
-          this.authService.encerrarSessao();
-          this.router.navigate(['/login']);         
+        this.authService.encerrarSessao();
+        this.router.navigate(['/login']);         
       },
       (errorResponse) => {          
         this.mensagemSucesso = null;   
         this.errors = errorResponse.error.errors;  
       }
-    );*/
-  }  
-
-  ngOnInit(): void {
-    //this.usuarioLogado = this.authService.getUsuarioAutenticado().nomeUsuario;
-    //this.role = this.authService.getUsuarioAutenticado().perfil;
-   // this.dadosAtualizacao.userId = this.authService.getUsuarioAutenticado().idUsuario;
-  }
+    );
+  }   
 }

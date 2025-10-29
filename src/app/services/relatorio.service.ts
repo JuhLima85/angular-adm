@@ -7,7 +7,7 @@ import autoTable from 'jspdf-autotable';
 })
 export class RelatorioService {
 
-  async gerarRelatorioPessoas(pessoas: any[]): Promise<void> {
+  async gerarRelatorioPessoas(pessoas: any[], tipoRelatorio: string): Promise<void> {
     if (!pessoas || pessoas.length === 0) {
       alert('Não há dados para gerar o relatório.');
       return;
@@ -50,9 +50,30 @@ export class RelatorioService {
       posicaoYDepoisDaImagem = 35; // valor padrão se a imagem não carregar
     }
 
+    // 🧮 Quantidade total de registros listadas (alinhado à esquerda)
+    const totalPessoas = pessoas.length;
+    doc.setFontSize(10);
+    doc.setTextColor(60, 60, 60);
+    doc.text(
+      `Quantidade de pessoas: ${totalPessoas}`,
+      15, // 🔹 margem esquerda (mesma usada no rodapé)
+      posicaoYDepoisDaImagem + 8, // 🔹 abaixo do título
+      { align: 'left' }
+    );
+
+    // 🏷️ Define o título com base no tipo de relatório
+    let tituloRelatorio = 'Lista de Cadastrados';
+    if (tipoRelatorio === 'membros') {
+      tituloRelatorio = 'Lista de Membros';
+    } else if (tipoRelatorio === 'naoMembros') {
+      tituloRelatorio = 'Lista de Não Membros';
+    } else if (tipoRelatorio === 'todos') {
+      tituloRelatorio = 'Lista de Membros e Não Membros';
+    }
+
     // 🏷️ Cabeçalho do relatório (centralizado e com espaçamento após imagem)
     doc.setFontSize(16);
-    doc.text('Relatório de Pessoas Cadastradas', pageWidth / 2, posicaoYDepoisDaImagem, { align: 'center' });
+    doc.text(tituloRelatorio, pageWidth / 2, posicaoYDepoisDaImagem, { align: 'center' });
 
     // 🔧 Ajusta o início da tabela (dá espaço extra entre o título e a tabela)
     const inicioTabelaY = posicaoYDepoisDaImagem + 10;
@@ -111,8 +132,21 @@ export class RelatorioService {
     doc.setFontSize(10);
     doc.text(`Gerado em: ${dataAtual}`, 14, pageHeight - 10);
 
-    // 🔍 Abre o PDF em nova aba
-    doc.output('dataurlnewwindow');
+    // 🏷️ Define o nome do arquivo dinamicamente
+    let nomeArquivo = 'CADASTRO_SIBRE';
+    if (tipoRelatorio === 'membros') {
+      nomeArquivo += '_Membros';
+    } else if (tipoRelatorio === 'naoMembros') {
+      nomeArquivo += '_Nao_Membros';
+    } else if (tipoRelatorio === 'todos') {
+      nomeArquivo += '_Membros_e_Nao_Membros';
+    }
+
+    // 📅 Inclui a data no nome (opcional, formato dd-MM-yyyy)
+    nomeArquivo += `_${dataAtual}.pdf`;
+
+    // 🔍 Abre o PDF em nova aba e também salva o arquivo com o nome definido
+    doc.save(nomeArquivo);
   }
 
   // 🔧 Função para carregar imagem em Base64 a partir do caminho

@@ -1,6 +1,6 @@
 {
-  "name": "clientes-app",
-  "version": "0.0.0",
+  "name": "sibre-app",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -30,7 +30,7 @@
     "keycloak-js": "^18.0.1",
     "pdfmake": "^0.2.7",
     "rxjs": "~6.5.4",
-    "tslib": "^1.10.0",
+    "tslib": "^1.14.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
