@@ -17,8 +17,7 @@ export class UsuarioService {
     return this.http.post(this.apiUrl, usuario, { responseType: 'text' });
   }
 
-  atualizarUsuario(id: string, usuario: KeycloakUserDTO): Observable<string> {
-    console.log('Id usuário logado no service:', usuario);
+  atualizarUsuario(id: string, usuario: KeycloakUserDTO): Observable<string> {    
     return this.http.put(`${this.apiUrl}/${id}`, usuario, { responseType: 'text' });
   }
 

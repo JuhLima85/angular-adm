@@ -1,12 +1,22 @@
-<h1 class="mt-2">Home</h1>
+<div class="home-container text-center mt-4">
+  <h1 class="titulo-home text-primary fw-bold mb-3">Bem-vindo(a), {{ usuarioLogado?.firstName | titlecase }}!</h1>
 
-<div class="home-container text-center">
-  <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Bem vindo(a) {{ usuarioLogado?.firstName | titlecase}}!</li>
-  </ol>
-</div>
+  <p class="subtitulo-home text-secondary mb-4">
+    É uma alegria tê-lo(a) de volta ao <strong>Sistema de Gerenciamento de Membros</strong>.
+  </p>
 
-<div class="pai text-center">
-  <h1 class="titulo-home">Sistema de Gerenciamento de Membros</h1>
-  <img src="assets/img/logo7.png" alt="Logo SIBRE" class="imagem-logo">
+  <div class="pai text-center">
+    <img src="assets/img/logo7.png" alt="Logo SIBRE" class="imagem-logo mb-4">
+    <h2 class="slogan text-muted fst-italic">
+      “Servindo com excelência e amor cristão”
+    </h2>
+  </div>
+
+  <hr class="mt-5" style="width: 60%; margin: auto;">
+
+  <div class="infos mt-4">
+    <p class="text-secondary">
+      Acesse os módulos acima para gerenciar membros, usuários e outras funcionalidades do sistema.
+    </p>
+  </div>
 </div>

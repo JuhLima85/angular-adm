@@ -13,9 +13,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['admin', 'gestor', 'consulta'] },
     children: [
-      { path: 'update', component: UsuarioUpdateComponent, data: { roles: ['admin', 'gestor', 'consulta']}},
-      { path: 'form', component: UsuarioFormComponent, data: { roles: ['admin']}},
-      { path: 'list', component: UsuarioListComponent, data: { roles: ['admin', 'gestor']}},
+      // 🔑 Alterar senha → admin e gestor e consulta
+      { path: 'update', component: UsuarioUpdateComponent, data: { roles: ['admin', 'gestor', 'consulta'] }},
+
+      // 🧩 Cadastrar usuário → somente admin
+      { path: 'form', component: UsuarioFormComponent, data: { roles: ['admin'] }},
+
+      // ⚙️ Gerenciar acesso → admin e gestor
+      { path: 'list', component: UsuarioListComponent, data: { roles: ['admin', 'gestor'] }},
+
       { path: '', redirectTo: 'update', pathMatch: 'full' }  
     ]
   },  
